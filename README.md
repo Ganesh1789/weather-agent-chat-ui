@@ -1,10 +1,10 @@
-Weather Agent Chat Interface
+**Weather Agent Chat Interface**
 
 A responsive web-based chat application that enables users to interact with a weather agent through a streaming API. The application dynamically adapts its user interface based on weather conditions mentioned in the agent’s responses, providing both textual and visual feedback.
 
 This project has been developed as part of a Frontend Developer Assignment.
-
-Live Demo
+**
+Live Demo**
 
 https://weather-agent-chat-ui.vercel.app/
 
