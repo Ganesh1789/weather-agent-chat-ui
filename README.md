@@ -1,16 +1,19 @@
-**Weather Agent Chat Interface**
+Weather Agent Chat Interface
 
 A responsive web-based chat application that enables users to interact with a weather agent through a streaming API. The application dynamically adapts its user interface based on weather conditions mentioned in the agent’s responses, providing both textual and visual feedback.
 
 This project has been developed as part of a Frontend Developer Assignment.
-**
-Live Demo**
+
+
+Live Demo
 
 https://weather-agent-chat-ui.vercel.app/
+
 
 Project Overview
 
 The Weather Agent Chat Interface allows users to ask weather-related questions and receive real-time responses from a weather agent. The UI updates dynamically based on detected weather conditions such as rain, snow, storm, or clear weather.
+
 
 The primary objective of this project is to demonstrate:
 
@@ -21,6 +24,7 @@ API integration with streaming responses
 Clean and responsive UI implementation
 
 Attention to user experience and graceful error handling
+
 
 Key Features
 
@@ -40,6 +44,7 @@ Clear chat functionality
 
 Graceful handling of API errors or unavailability
 
+
 Technology Stack
 
 Frontend Framework: React (Vite)
@@ -58,9 +63,11 @@ API Integration
 
 The application integrates with a streaming weather agent API.
 
+
 Endpoint:
 
 POST https://brief-thousands-sunset-9fcb1c78-485f-4967-ac04-2759a8fa1462.mastra.cloud/api/agents/weatherAgent/stream
+
 
 
 User queries are sent to the API as messages.
@@ -105,6 +112,7 @@ Relevant animations (rain or snow) are triggered
 
 This ensures a clear and intuitive user experience through both visual and textual cues.
 
+
 How to Run Locally
 
 Clone the repository:
@@ -131,6 +139,8 @@ Open the application in your browser:
 
 http://localhost:5173
 
+
+
 Project Structure
 src/
  ├── components/
@@ -142,6 +152,7 @@ src/
  ├── App.jsx
  ├── main.jsx
  └── index.css
+
 
 Design Considerations
 
@@ -166,6 +177,7 @@ Message search or export functionality
 Unit testing using Jest or React Testing Library
 
 Progressive Web App (PWA) support
+
 
 Author
 
