@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import ChatInput from "./ChatInput";
 import MessageBubble from "./MessageBubble";
-import { streamWeatherResponse } from "../utils/streamApi";
+import { getWeatherResponse } from "../utils/streamApi";
+
 
 function applyWeatherTheme(text) {
   const body = document.body;
@@ -129,47 +130,48 @@ export default function ChatWindow() {
   }, [messages]);
 
   async function handleSend(text) {
-    if (!text.trim()) return;
+  if (!text.trim()) return;
 
+  setMessages((prev) => [
+    ...prev,
+    {
+      role: "user",
+      content: text,
+      time: new Date().toLocaleTimeString(),
+    },
+    {
+      role: "agent",
+      content: "",
+      time: new Date().toLocaleTimeString(),
+    },
+  ]);
+
+  setLoading(true);
+
+  try {
+    const reply = await getWeatherResponse(text);
+
+    setMessages((prev) => {
+      const updated = [...prev];
+      const lastMessage = updated[updated.length - 1];
+      lastMessage.content = reply;
+
+      applyWeatherTheme(reply);
+      return updated;
+    });
+  } catch {
     setMessages((prev) => [
-      ...prev,
-      {
-        role: "user",
-        content: text,
-        time: new Date().toLocaleTimeString(),
-      },
+      ...prev.slice(0, -1),
       {
         role: "agent",
-        content: "",
+        content: "⚠️ Weather service unavailable.",
         time: new Date().toLocaleTimeString(),
       },
     ]);
-
-    setLoading(true);
-
-    try {
-      await streamWeatherResponse(text, (chunk) => {
-        setMessages((prev) => {
-          const updated = [...prev];
-          const lastMessage = updated[updated.length - 1];
-          lastMessage.content += chunk;
-          applyWeatherTheme(lastMessage.content);
-          return updated;
-        });
-      });
-    } catch {
-      setMessages((prev) => [
-        ...prev.slice(0, -1),
-        {
-          role: "agent",
-          content: "⚠️ Weather service unavailable.",
-          time: new Date().toLocaleTimeString(),
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
+  } finally {
+    setLoading(false);
   }
+}
 
   function clearChat() {
     setMessages([]);
